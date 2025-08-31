@@ -80,6 +80,8 @@ MonoBehaviour:
   gatherSounds:
   - name: "\uCC44\uC9D1 \uC18C\uB9AC (\uBD80\uC2A4\uB7ED)"
     clip: {fileID: 8300000, guid: 6e9f587fce713fc4e960b3c2356bc50f, type: 3}
+  m_bgmVolume: 0.5
+  m_systemVolume: 0.5
 --- !u!1 &1308344700844982936
 GameObject:
   m_ObjectHideFlags: 0
@@ -128,7 +130,7 @@ MonoBehaviour:
   m_videoCanvas: {fileID: 9210199640985305665}
   m_videoPlayer: {fileID: 2138250003167456073}
   videoClips:
-  - {fileID: 32900000, guid: d4afba7cc02916e44a4d217621995685, type: 3}
+  - {fileID: 32900000, guid: dcfd0c67fa2fc214cbdec9bef42c69ca, type: 3}
   - {fileID: 32900000, guid: 101fecef54d5ee844b58088bb3b6b1a8, type: 3}
 --- !u!1 &1702548280217744352
 GameObject:
@@ -422,6 +424,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f068403bc10f95428e82c09e03ad057, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  saveFile: 
   TPFlag: 0
   currentMapGroup: {fileID: 0}
   m_fadeInOut: {fileID: 1342312100108136920}
@@ -459,6 +462,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8997752482329104151}
   - component: {fileID: 3916469181132979217}
+  - component: {fileID: 8927630417912067775}
   m_Layer: 0
   m_Name: QuestManager
   m_TagString: Untagged
@@ -495,6 +499,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_questDB: {fileID: 11400000, guid: 63818e410a6ae3348bd9c0f911db03d8, type: 2}
   m_debugQuestList: []
+--- !u!114 &8927630417912067775
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4276159095759392636}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c08c824037bfff4fb5d75ffb82cc9e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  quest: {fileID: 3916469181132979217}
 --- !u!1 &4300701908551921555
 GameObject:
   m_ObjectHideFlags: 0
@@ -528,10 +545,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 7189545200242105092}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1920, y: 1080}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2426468351383148493
 CanvasRenderer:
@@ -631,6 +648,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   InvenManager: {fileID: 2089412440594396748}
   m_userData: {fileID: 11400000, guid: 36594f906b5258845a61ef830ba31839, type: 2}
+  m_gold: 300
+  m_defaultBuyPrice: 10
+  m_sellRate: 0.5
+  m_itemPrices:
+  - Item: {fileID: 11400000, guid: a8d1e9f08ce0dfd469a16edc02d2f1df, type: 2}
+    BuyPrice: 100
+    SellPrice: 200
+  - Item: {fileID: 11400000, guid: 16e21f03d1b8781408a7f86eba5489cf, type: 2}
+    BuyPrice: 200
+    SellPrice: 300
+  - Item: {fileID: 11400000, guid: fbb4994e91449ca46af2ab6212b86637, type: 2}
+    BuyPrice: 300
+    SellPrice: 400
 --- !u!1 &5593328672697944383
 GameObject:
   m_ObjectHideFlags: 0
@@ -682,6 +712,10 @@ MonoBehaviour:
   BookUI: {fileID: 0}
   QuestUIOpen: {fileID: 0}
   QuestUIClosed: {fileID: 0}
+  EscapeKeyUIPrefab: {fileID: 7490406563458699892, guid: 1465c1f8a1d988649b2732f6649cff42,
+    type: 3}
+  m_escapeKeyUIInstance: {fileID: 0}
+  escapeKeyUIOpenFlag: 0
   CraftUIOpenFlag: 0
   PotionCraftUIOpenFlag: 0
   DialogueOpenFlag: 0
@@ -779,7 +813,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -907,11 +941,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e6a034e7ee2e1d4c90f056f4e0f5c5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  titleBGM: {fileID: 8300000, guid: 46d4655eb030e2e4c838f7168a767a6a, type: 3}
+  bgmSource: {fileID: 2005459567089839674}
   mapGroups:
   - groupType: 2
     groupBGM: {fileID: 8300000, guid: 1fbb6df2fddcaee4c86192f8726a9c72, type: 3}
-    maps: []
+    maps:
+    - mapObject: {fileID: 0}
+      overrideBGM: {fileID: 0}
+    - mapObject: {fileID: 0}
+      overrideBGM: {fileID: 0}
   - groupType: 3
+    groupBGM: {fileID: 8300000, guid: 46d4655eb030e2e4c838f7168a767a6a, type: 3}
+    maps: []
+  - groupType: 4
+    groupBGM: {fileID: 8300000, guid: 46d4655eb030e2e4c838f7168a767a6a, type: 3}
+    maps: []
+  - groupType: 4
     groupBGM: {fileID: 8300000, guid: 46d4655eb030e2e4c838f7168a767a6a, type: 3}
     maps: []
 --- !u!1 &8242688818425508817
@@ -1039,7 +1085,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -1167,7 +1213,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0
